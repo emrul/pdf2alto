@@ -86,6 +86,7 @@ public class PDF2ALTOConverter extends PDFTextStripper {
         }
 
         try (PDDocument document = PDDocument.load(pdfFile)) {
+            logger.info("start converting {}", pdfFile.getName());
             PDF2ALTOConverter stripper = new PDF2ALTOConverter(document, xmlDir, imageDir, dx, dy, sx, sy);
             for (int page = 0; page < document.getNumberOfPages(); ++page) {
                 try {
@@ -94,12 +95,14 @@ public class PDF2ALTOConverter extends PDFTextStripper {
                     logger.error("Unexpected error", t);
                 }
             }
+            logger.info("finished converting");
         }
     }
 
     private ALTO alto;
 
     private void stripPage(int page) throws IOException {
+        logger.info("start converting page {}", page);
         PDFRenderer pdfRenderer = new PDFRenderer(document);
         image = pdfRenderer.renderImage(page, SCALE);
         logger.debug("{}x{}", image.getWidth(), image.getHeight());
@@ -231,10 +234,9 @@ public class PDF2ALTOConverter extends PDFTextStripper {
             AffineTransform sc = AffineTransform.getScaleInstance(SCALE, SCALE);
             s = sc.createTransformedShape(s);
             Rectangle r = s.getBounds();
-            strings.add(new ALTOString(text.getUnicode(), alto.getLayout().getPage().getId(), charCount++, (int)(r.height*sy), (int)(r.width*sx), (int)(r.x*sx+dx), (int)(r.y*sy+dy)));
+            strings.add(new ALTOString(text.getUnicode(), alto.getLayout().getPage().getId(), charCount++, (int) (r.height * sy), (int) (r.width * sx), (int) (r.x * sx + dx), (int) (r.y * sy + dy)));
             logger.debug("char:{} x:{} y:{} w:{} h:{}", text.getUnicode(), r.x, r.y, r.width, r.height);
         }
     }
-    
-    
+
 }
