@@ -13,7 +13,7 @@ public class ALTOTextLine {
     }
 
     public ALTOTextLine(String page, int id, int height, int width, int hpos, int vpos) {
-	this.id = String.format("%s_TL%07d", page, id);
+	this.id = String.format("%s_TL%06d", page, id);
 	this.height = height;
 	this.width = width;
 	this.hpos = hpos;

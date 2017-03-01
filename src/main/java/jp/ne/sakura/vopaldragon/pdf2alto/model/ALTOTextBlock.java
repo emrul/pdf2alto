@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlElement;
 public class ALTOTextBlock {
 
     public ALTOTextBlock(String page, int id, int height, int width, int hpos, int vpos) {
-	this.id = String.format("%s_TB%07d", page, id);
+	this.id = String.format("%s_TB%06d", page, id);
 	this.height = height;
 	this.width = width;
 	this.hpos = hpos;

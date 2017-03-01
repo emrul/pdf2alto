@@ -108,7 +108,7 @@ public class PDF2ALTOConverter extends PDFTextStripper {
         logger.debug("{}x{}", image.getWidth(), image.getHeight());
 
         //JAXB用オブジェクト準備
-        ALTODescription desc = new ALTODescription(new ALTOMesurementUnit("pixel"), new ALTOSourceImageInformation(new ALTOFileName("")));
+        ALTODescription desc = new ALTODescription(new ALTOMesurementUnit("pixel"), new ALTOSourceImageInformation(new ALTOFileName(String.format("%04d.jpg",(page+1)))));
         String pageName = "P" + (page + 1);
         ALTOPage altoPage = new ALTOPage(pageName, image.getWidth(), image.getHeight());
         alto = new ALTO(desc, altoPage);
@@ -169,7 +169,7 @@ public class PDF2ALTOConverter extends PDFTextStripper {
 
         g2d.dispose();
 
-        String page0pad = String.format("%03d", page);
+        String page0pad = String.format("%04d", (page+1));
 
         if (imgDir != null) {
             File imageFile = imgDir.toPath().resolve("image_" + page0pad + ".png").toFile();

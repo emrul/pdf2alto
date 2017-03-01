@@ -11,7 +11,7 @@ public class ALTOString {
     }
 
     public ALTOString(String character, String page, int id, int height, int width, int hpos, int vpos) {
-	this.id = String.format("%s_ST%07d", page, id);
+	this.id = String.format("%s_ST%06d", page, id);
 	this.content = character;
 	this.height = height;
 	this.width = width;

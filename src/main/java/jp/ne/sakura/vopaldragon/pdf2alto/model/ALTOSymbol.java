@@ -11,7 +11,7 @@ public class ALTOSymbol {
     }
 
     public ALTOSymbol(String character, String page, int id, int height, int width, int hpos, int vpos) {
-        this.id = String.format("%s_SY%07d", page, id);
+        this.id = String.format("%s_SY%06d", page, id);
         this.height = height;
         this.width = width;
         this.hpos = hpos;
